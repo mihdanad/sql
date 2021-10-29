@@ -1,0 +1,74 @@
+1. Buat Database
+	CREATE DATABASE myshop;
+
+2. Membuat Table di Dalam Database
+      
+	Table Users
+	CREATE TABLE users (
+  	id int auto_increment primary key,
+  	name varchar(255),
+  	email varchar(255),
+  	password varchar(255)
+  	);
+
+  	Table categories
+  	CREATE TABLE categories (
+  	id int auto_increment primary key,
+  	name varchar(255)
+  	);
+	
+	Table items
+  	CREATE TABLE items (
+  	id int auto_increment primary key,
+  	name varchar(255),
+ 	description varchar(255),
+  	price int,
+  	stock int,
+  	category_id int,
+  	foreign key (category_id) references categories (id)
+  	);
+
+3. Memasukkan Data Pada Tabel
+
+	Table Users
+	INSERT INTO users (name, email, password) 
+  	values 
+ 	("John Doe", "john@doe.com", "john123"), 
+  	("Jane Doe", "jane@doe.com", "jenita123");
+
+	Table categories
+  	INSERT INTO categories (name) 
+  	values 
+  	("gadget"), ("cloth"), ("men"), ("women"), ("branded");
+	
+	Table items
+  	INSERT INTO items (name, description, price, stock, category_id)
+  	values
+  	("Sumsang b50", "hape keren dari merek sumsang", 4000000, 100, 1),
+  	("Uniklooh", "baju keren dari brand ternama",500000, 50, 2),
+  	("IMHO Watch", "jam tangan anak yang jujur banget",2000000 ,10, 1);
+
+4. Mengambil Data Dari Database
+   -Mengambil data kecuali password dari tabel users
+	SELECT name, email from users;
+
+   -Mengambil data item dengan kondisi ">" lebih dari, dari tabel items
+	 SELECT * FROM items where price > 1000000;
+
+   -Mengambil data menggunakan like kata kunci "sang"
+	SELECT * FROM items where name like '%sang%';
+
+   -Mengambil data di dua tabel yaitu items dan categories menggunakan join
+	SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name as kategori
+  	from items inner join categories on items.category_id = categories.id ;
+
+5. Mengubah data dari database (mengudate data pada table items)
+	 UPDATE items set price=2500000 where id=1;
+
+
+
+*-Awal query sengaja saya tulis dengan huruf KAPITAL.
+ -Beberapa sintax sql saya ENTER supaya tidak terlalu panjang dan supaya lebih rapi.
+ -Tidak ada tanda panah karena saya menulis sintax secara langsung dalam satu baris.
+
+
